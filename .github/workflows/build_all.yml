@@ -65,7 +65,7 @@ jobs:
           run: mkdir "C:/Program Files/codec2" ; mkdir "C:/Program Files/codec2/include" ; mkdir "C:/Program Files/codec2/include/codec2" ; mkdir "C:/Program Files/codec2/lib" ; cd "codec2" ; xcopy "src" "C:/Program Files/codec2/include" ; cd "build" ; xcopy "src" "C:/Program Files/codec2/lib" ; xcopy "codec2" "C:/Program Files/codec2/include/codec2"
 
         - name: Install vcpkg dependencies
-          run: vcpkg install fftw3:x64-windows glfw3:x64-windows portaudio:x64-windows zstd:x64-windows libusb:x64-windows spdlog:x64-windows
+          run: vcpkg install fftw3:x64-windows glfw3:x64-windows portaudio:x64-windows zstd:x64-windows libusb:x64-windows spdlog:x64-windows boost:x64-windows
 
         - name: Install rtaudio
           run: git clone https://github.com/thestk/rtaudio ; cd rtaudio ; git checkout 2f2fca4502d506abc50f6d4473b2836d24cfb1e3 ; mkdir build ; cd build ; cmake .. ; cmake --build . --config Release ; cmake --install .
@@ -78,12 +78,6 @@ jobs:
 
         - name: Install libfobos
           run: git clone https://github.com/AlexandreRouma/libfobos ; cd libfobos ; mkdir build ; cd build ; cmake .. -DCMAKE_BUILD_TYPE=Release "-DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake" ; cmake --build . --config Release ; cmake --install .
-
-        - name: Install boost
-          uses: MarkusJx/install-boost@v2
-          id: install-boost
-          with:
-            boost_version: 1.88.0
 
         - name: Prepare CMake
           working-directory: ${{runner.workspace}}/build
