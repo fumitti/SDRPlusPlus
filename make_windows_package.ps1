@@ -6,6 +6,7 @@ mkdir sdrpp_windows_x64
 # Copy root
 cp -Recurse $root_dir/* sdrpp_windows_x64/
 
+
 # Copy core
 cp $build_dir/Release/* sdrpp_windows_x64/
 cp 'C:/Program Files/PothosSDR/bin/volk.dll' sdrpp_windows_x64/
